@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Noto+Sans+Arabic:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playwrite+DE+SAS:wght@100..400&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Vazirmatn:wght@100..900&display=swap");
+@theme {
+  --font-sans: "Vazirmatn", sans-serif;
+}
