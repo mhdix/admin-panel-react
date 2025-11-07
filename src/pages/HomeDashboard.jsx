@@ -16,7 +16,6 @@ import {
 export default function HomeDashboard() {
   return (
     <div className="min-h-screen bg-gray-50 w-full mx-auto" dir="rtl">
-      {/* Header */}
       <header className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between">
           <div>
@@ -33,7 +32,6 @@ export default function HomeDashboard() {
       </header>
 
       <div className="p-6">
-        {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {[
             {
@@ -89,9 +87,7 @@ export default function HomeDashboard() {
           ))}
         </div>
 
-        {/* Charts & Activity */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Chart */}
           <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               روند فروش هفتگی
@@ -103,7 +99,6 @@ export default function HomeDashboard() {
             </div>
           </div>
 
-          {/* Recent Activity */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               فعالیت‌های اخیر
@@ -153,9 +148,7 @@ export default function HomeDashboard() {
           </div>
         </div>
 
-        {/* Table & Calendar */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Recent Orders Table */}
           <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               سفارشات اخیر
@@ -231,7 +224,6 @@ export default function HomeDashboard() {
             </div>
           </div>
 
-          {/* Mini Calendar */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">تقویم</h3>
             <div className="h-48 bg-gray-50 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">

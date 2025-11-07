@@ -1,8 +1,7 @@
-// src/pages/BlogForm.jsx
 "use client";
 
 import React, { useState } from "react";
-import { Plus, Image, Tag, Clock, User, X, ChevronLeft } from "lucide-react";
+import { Plus, Tag, Clock, User, ChevronLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 const categories = ["آموزش", "تکنولوژی", "دیزاین", "امنیت"];
@@ -11,22 +10,15 @@ export default function BlogForm() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
-    excerpt: "",
-    content: "",
-    category: "آموزش",
-    author: "علی محمدی",
-    readTime: "۵ دقیقه",
+    description: "",
+    readTime: "",
+    image: "",
   });
+  console.log(formData);
   const [imagePreview, setImagePreview] = useState(null);
   const [errors, setErrors] = useState({});
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
-  };
+  const handleInputChange = (e) => {};
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -39,29 +31,27 @@ export default function BlogForm() {
     }
   };
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.title.trim()) newErrors.title = "عنوان الزامی است";
-    if (!formData.excerpt.trim()) newErrors.excerpt = "خلاصه الزامی است";
-    if (!formData.content.trim()) newErrors.content = "محتوا الزامی است";
-    if (!imagePreview) newErrors.image = "تصویر الزامی است";
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  // const validateForm = () => {
+  //   const newErrors = {};
+  //   if (!formData.title.trim()) newErrors.title = "عنوان الزامی است";
+  //   if (!formData.excerpt.trim()) newErrors.excerpt = "خلاصه الزامی است";
+  //   if (!formData.content.trim()) newErrors.content = "محتوا الزامی است";
+  //   if (!imagePreview) newErrors.image = "تصویر الزامی است";
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      // اینجا می‌تونی به API بفرستی
-      console.log("پست جدید:", { ...formData, image: imagePreview });
-      alert("پست با موفقیت ایجاد شد!");
-      navigate("/blogs");
-    }
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (validateForm()) {
+  //     console.log("پست جدید:", { ...formData, image: imagePreview });
+  //     alert("پست با موفقیت ایجاد شد!");
+  //     navigate("/blogs");
+  //   }
+  // };
 
   return (
     <div className="min-h-screen w-full bg-gray-50" dir="rtl">
-      {/* Header */}
       <header className="bg-white border-b border-gray-200 px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -88,7 +78,7 @@ export default function BlogForm() {
               لغو
             </button>
             <button
-              onClick={handleSubmit}
+              // onClick={handleSubmit}
               className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
             >
               <Plus className="w-4 h-4" />
@@ -99,16 +89,25 @@ export default function BlogForm() {
       </header>
 
       <div className="p-6 max-w-4xl mx-auto">
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Image Upload */}
+        <form className="space-y-6">
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <label className="block text-sm font-medium text-gray-700 mb-3">
               تصویر شاخص
             </label>
             <div className="space-y-4">
-              {imagePreview ? (
+              <input
+                onChange={(e) => setFormData({ image: e.target.files[0] })}
+                type="file"
+                label="image"
+                id="file-upload"
+                name="blog"
+                accept=".jpeg, .jpg, .png"
+              />
+
+              {/* {imagePreview ? (
                 <div className="relative">
                   <img
+                    name="blog"
                     src={imagePreview}
                     alt="پیش‌نمایش"
                     className="w-full h-64 object-cover rounded-lg"
@@ -137,14 +136,13 @@ export default function BlogForm() {
                     className="hidden"
                   />
                 </label>
-              )}
+              )} */}
               {errors.image && (
                 <p className="text-red-500 text-xs">{errors.image}</p>
               )}
             </div>
           </div>
 
-          {/* Title & Excerpt */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -185,7 +183,6 @@ export default function BlogForm() {
             </div>
           </div>
 
-          {/* Content */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               محتوای کامل
@@ -205,7 +202,6 @@ export default function BlogForm() {
             )}
           </div>
 
-          {/* Meta Fields */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
